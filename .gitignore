@@ -1,2 +1,3 @@
 arch/airootfs/etc/pacman.d/mirrorlist
+arch/airootfs/etc/options/override/*
 build/*
