@@ -1,0 +1,9 @@
+[Unit]
+Description=Run scripts in the home of zero to set up arch
+
+[Service]
+WorkingDirectory=/etc/setup
+ExecStart=/bin/bash ./install.sh
+
+[Install]
+WantedBy=multi-user.target
