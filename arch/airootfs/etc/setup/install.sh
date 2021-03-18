@@ -1,7 +1,5 @@
 #! /bin/bash
 
-echo "Hello, World!" > /home/zero/touched
-
 # set clock to use network time
 timedatectl set-ntp true
 timedatectl set-timezone EST
@@ -38,5 +36,3 @@ cp /etc/options/override/* /mnt/etc/options
 cp ./chroot_setup.sh /mnt/chroot_setup.sh
 chmod +x /mnt/chroot_setup.sh
 arch-chroot /mnt /chroot_setup.sh
-
-touch /home/zero/done
