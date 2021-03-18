@@ -4,8 +4,8 @@ COUNTRY_CODE?=US
 clean:
 	@rm -rf ./build/work
 
-clean-all:
-	@rm -rf ./build/*
+clean-iso:
+	@rm -rf ./build/*.iso
 
 gen-passwd:
 	@echo 'Password for account "zero"'
@@ -15,5 +15,5 @@ gen-mirrorlist:
 	@mkdir -p ./arch/airootfs/etc/pacman.d
 	@reflector --latest 10 --sort rate --save ./arch/airootfs/etc/pacman.d/mirrorlist
 
-build: clean-all gen-passwd gen-mirrorlist
+build: clean-iso gen-passwd gen-mirrorlist
 	@mkarchiso -v -w ./build/work -o ./build ./arch
