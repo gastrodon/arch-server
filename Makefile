@@ -1,7 +1,6 @@
 COUNTRY_CODE?=US
 
 clean:
-	@echo root::14871:::::: > ./arch/airootfs/etc/shadow
 	@rm -rf ./build/work
 
 clean-iso:
