@@ -1,12 +1,15 @@
 #
 # SPDX-License-Identifier: GPL-3.0-or-later
+arch-install-scripts
 base
 cloud-init
 docker
+dosfstools
 linux
 mkinitcpio
 mkinitcpio-archiso
 neofetch
 openssh
+parted
 syslinux
 zsh
