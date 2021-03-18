@@ -1,3 +1,2 @@
-arch/airootfs/etc/shadow
 arch/airootfs/etc/pacman.d/mirrorlist
 build/*
