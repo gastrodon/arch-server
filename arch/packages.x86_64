@@ -3,13 +3,11 @@
 arch-install-scripts
 base
 cloud-init
-docker
 dosfstools
 linux
 mkinitcpio
 mkinitcpio-archiso
-neofetch
-openssh
 parted
+reflector
 syslinux
 zsh
