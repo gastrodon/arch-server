@@ -1,0 +1,11 @@
+base
+dhcpcd
+docker
+efibootmgr
+grub
+linux
+linux-firmware
+neofetch
+openssh
+sudo
+zsh
