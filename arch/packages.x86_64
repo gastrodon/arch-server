@@ -5,5 +5,7 @@ cloud-init
 linux
 mkinitcpio
 mkinitcpio-archiso
+neofetch
 openssh
 syslinux
+zsh
