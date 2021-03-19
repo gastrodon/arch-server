@@ -1,0 +1,5 @@
+---
+- name: update system
+  hosts: all
+  tasks:
+    - import_tasks: ./tasks.yml
