@@ -8,5 +8,6 @@ linux-firmware
 lvm2
 neofetch
 openssh
+python3
 sudo
 zsh
