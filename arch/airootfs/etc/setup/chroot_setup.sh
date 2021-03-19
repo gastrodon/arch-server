@@ -14,10 +14,10 @@ systemctl enable \
 # figure out the default network device
 # if it matches any `enp0s[0-9]` `eth[0-9]`
 # If any, enable it
-DEVICE="$(ip link | grep -E 'enp[0-9]s[0-9]' | cut -d; -f2 | tr -d [:space:])"
+DEVICE="$(ip link | grep -E 'enp[0-9]s[0-9]' | cut -d: -f2 | tr -d '[:space:]')"
 [ -n "$DEVICE" ] && systemctl enabel "dhcpcd@$DEVICE"
 
-DEVICE="$(ip link | grep -E 'eth[0-9]' | cut -d; -f2 | tr -d [:space:])"
+DEVICE="$(ip link | grep -E 'eth[0-9]' | cut -d: -f2 | tr -d '[:space:]')"
 [ -n "$DEVICE" ] && systemctl enabel "dhcpcd@$DEVICE"
 
 # set time info
