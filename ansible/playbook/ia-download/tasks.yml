@@ -26,6 +26,7 @@
     command: "{{ item }}"
     pull: yes
     restart_policy: on-failure
+    state: "{{ ia_download_state | default('started') }}"
     volumes:
       - /storage/roms/3DS:/ia
 
@@ -46,5 +47,6 @@
     command: "{{ item }}"
     pull: yes
     restart_policy: on-failure
+    state: "{{ ia_download_state | default('started') }}"
     volumes:
       - /storage/roms/WII:/ia
