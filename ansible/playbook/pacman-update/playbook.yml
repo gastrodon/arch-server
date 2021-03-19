@@ -1,7 +1,6 @@
 ---
 - name: update system
   hosts: all
-  remote_user: zero
 
   tasks:
     - import_tasks: ./tasks.yml
