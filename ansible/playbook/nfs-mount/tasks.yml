@@ -1,0 +1,13 @@
+---
+- name: ensure /storage mounted
+  become: yes
+  tags:
+    - storage
+    - nfs-mount
+    - required-hosts
+  ansible.posix.mount:
+      src: storage:/storage
+      path: /storage
+      fstype: nfs
+      opts: rw,sync,user,exec
+      state: mounted
