@@ -3,16 +3,4 @@
   hosts: all
 
   tasks:
-    - name: ensure python installed
-      become: yes
-      community.general.pacman:
-        name:
-          - python
-          - python-pip
-          - python-setuptools
-
-    - name: ensure pip docker
-      pip:
-        name: docker
-        state: latest
-        extra_args: --user
+    - import_tasks: ./tasks.yml

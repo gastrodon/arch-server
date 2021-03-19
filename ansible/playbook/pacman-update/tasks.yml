@@ -1,0 +1,8 @@
+---
+  - name: pacman -Syu
+    become: yes
+    tags:
+      - required-pacman
+    community.general.pacman:
+      update_cache: yes
+      upgrade: yes

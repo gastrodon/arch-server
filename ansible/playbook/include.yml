@@ -1,0 +1,9 @@
+---
+- name: include playbooks
+  hosts: all
+  tasks:
+    - name: include
+      loop:
+        - pacman-update
+        - python-pip
+      include_tasks: "./{{ item }}/tasks.yml"
