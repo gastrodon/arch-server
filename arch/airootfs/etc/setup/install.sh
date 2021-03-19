@@ -8,6 +8,7 @@ timedatectl set-timezone EST
 sfdisk /dev/sda < sda.dump
 mkfs.fat -F32 /dev/sda1
 mkfs.ext4 /dev/sda2
+echo "Yes" | parted /dev/sda resizepart 2 100% ---pretend-input-tty 
 
 # copy /boot and /
 mkdir -p /mnt/{root,boot}
