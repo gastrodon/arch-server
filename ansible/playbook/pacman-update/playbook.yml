@@ -1,0 +1,11 @@
+---
+- name: update system
+  hosts: all
+  remote_user: zero
+
+  tasks:
+    - name: pacman -Syu
+      become: yes
+      community.general.pacman:
+        update_cache: yes
+        upgrade: yes
