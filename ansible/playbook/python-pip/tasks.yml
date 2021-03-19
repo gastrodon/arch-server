@@ -1,15 +1,4 @@
 ---
-- name: ensure python installed
-  become: yes
-  tags:
-    - required-pip
-    - required-docker
-  community.general.pacman:
-    name:
-      - python
-      - python-pip
-      - python-setuptools
-
 - name: ensure pip docker
   tags:
     - required-docker

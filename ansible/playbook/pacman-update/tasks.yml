@@ -6,3 +6,14 @@
   community.general.pacman:
     update_cache: yes
     upgrade: yes
+    
+- name: ensure python installed
+  become: yes
+  tags:
+    - required-pip
+    - required-docker
+  community.general.pacman:
+    name:
+      - python
+      - python-pip
+      - python-setuptools
