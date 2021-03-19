@@ -5,11 +5,30 @@
     - data-getter
     - storage
   loop:
+    - 3DS
     - WII
   ansible.builtin.file:
     owner: zero
     path: /storage/roms/{{ item }}
     state: directory
+
+- name: ia-download to 3DS
+  loop:
+    - nintendo-3ds-complete-collection
+    - nintendo-3ds-complete-collection-pt2
+  tags:
+    - data-getter
+    - required-docker
+    - required-storage
+    - docker-worker
+  community.docker.docker_container:
+    name: ia-download-{{ item }}
+    image: gastrodon/ia-download
+    command: "{{ item }}"
+    pull: yes
+    restart_policy: on-failure
+    volumes:
+      - /storage/roms/3DS:/ia
 
 - name: ia-download to WII
   loop:
