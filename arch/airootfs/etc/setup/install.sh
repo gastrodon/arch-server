@@ -25,8 +25,8 @@ genfstab -U /mnt > /mnt/etc/fstab
 
 # copy user info
 cp /etc/{group,gshadow,passwd,shadow,sudoers} /mnt/etc
-touch /mnt/home/zero
-cp /home/zero/. /mnt/home/zero
+mkdir /mnt/home/zero
+cp /home/zero/{,.}[^.]* /mnt/home/zero || :
 
 # copy options with overrides, if any
 cp -r /etc/options /mnt/etc
@@ -36,3 +36,5 @@ cp /etc/options/override/* /mnt/etc/options
 cp ./chroot_setup.sh /mnt/chroot_setup.sh
 chmod +x /mnt/chroot_setup.sh
 arch-chroot /mnt /chroot_setup.sh
+
+reboot now
