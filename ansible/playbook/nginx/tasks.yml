@@ -1,0 +1,29 @@
+---
+- name: ensure nginx mount targets
+  tags:
+    - nginx
+    - storage
+  loop:
+    - nginx
+    - letsencrypt
+  ansible.builtin.file:
+    owner: zero
+    path: /storage/docker_volumes/nginx/{{ item }}
+    state: directory
+
+- name: ensure nginx container up
+  tags:
+    - nginx
+    - docker-server
+  community.docker.docker_container:
+    name: nginx
+    image: nginx:stable-alpine
+    pull: yes
+    restart_policy: unless-stopped
+    state: "{{ nginx_state | default('started') }}"
+    volumes:
+      - /storage/docker_volumes/nginx/nginx:/etc/nginx
+      - /storage/docker_volumes/nginx/letsencrypt:/etc/letsencrypt
+    ports:
+      - "80:80"
+      - "443:443"

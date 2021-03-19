@@ -1,5 +1,5 @@
 ---
-- name: include playbooks-all
+- name: playbooks ok for any box
   hosts: all
   tasks:
     - name: pacman-tasks
@@ -9,8 +9,14 @@
     - name: ia-download-tasks
       import_tasks: ./ia-download/tasks.yml
 
-- name:
+- name: playbooks for the nfs mounters
   hosts: nfs_mounter
   tasks:
     - name: nfs-mount
       import_tasks: ./nfs-mount/tasks.yml
+
+- name: playbooks for service routers
+  hosts: router
+  tasks:
+    - name: nginx
+      import_tasks: ./nginx/tasks.yml

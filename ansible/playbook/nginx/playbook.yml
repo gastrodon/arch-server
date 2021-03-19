@@ -1,0 +1,5 @@
+---
+- name: run nginx
+  hosts: router
+  tasks:
+      - import_tasks: ./tasks.yml
