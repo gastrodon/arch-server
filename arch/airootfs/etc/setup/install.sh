@@ -5,10 +5,11 @@ timedatectl set-ntp true
 timedatectl set-timezone EST
 
 # config disk
+sed -i "s/%disksize%/$(expr $(cat /sys/block/sda/size) - 8)/g" sda.dump
 sfdisk /dev/sda < sda.dump
 mkfs.fat -F32 /dev/sda1
 mkfs.ext4 /dev/sda2
-echo "Yes" | parted /dev/sda resizepart 2 100% ---pretend-input-tty
+resize2fs /dev/sda2
 
 # copy /boot and /
 mkdir -p /mnt/{root,boot}

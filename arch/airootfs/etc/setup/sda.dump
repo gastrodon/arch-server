@@ -5,4 +5,4 @@ unit: sectors
 sector-size: 512
 
 /dev/sda1 : start=     2048, size=  1048576, type=c, bootable
-/dev/sdab : start=  1050624, size=  6291456, type=83
+/dev/sda2 : start=  1050624, size=  %disksize%, type=83

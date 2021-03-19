@@ -7,7 +7,6 @@ dosfstools
 linux
 mkinitcpio
 mkinitcpio-archiso
-parted
 reflector
 rsync
 syslinux
