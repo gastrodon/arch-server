@@ -1,2 +1,2 @@
 root ALL=(ALL) ALL
-zero ALL=(ALL) ALL
+zero ALL=(ALL) NOPASSWD: ALL
