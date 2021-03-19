@@ -26,8 +26,7 @@ genfstab -U /mnt > /mnt/etc/fstab
 
 # copy user info
 cp /etc/{group,gshadow,passwd,shadow,sudoers} /mnt/etc
-mkdir /mnt/home/zero
-cp /home/zero/{,.}[^.]* /mnt/home/zero || :
+cp -r /home/zero /mnt/home || :
 
 # copy options with overrides, if any
 cp -r /etc/options /mnt/etc
