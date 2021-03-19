@@ -1,6 +1,5 @@
 ---
 - name: ensure ia-download target
-  become: yes
   tags:
     - data-getter
     - storage
@@ -38,8 +37,6 @@
     - wiiusaredump3
   tags:
     - ia-download
-    - required-docker
-    - required-storage
     - docker-worker
   community.docker.docker_container:
     name: ia-download-{{ item }}
