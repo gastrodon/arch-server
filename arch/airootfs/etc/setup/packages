@@ -5,6 +5,7 @@ efibootmgr
 grub
 linux
 linux-firmware
+lvm2
 neofetch
 openssh
 sudo
