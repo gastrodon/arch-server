@@ -2,14 +2,16 @@
 - name: pacman -Syu
   become: yes
   tags:
+    - pacman
     - required-pacman
   community.general.pacman:
     update_cache: yes
     upgrade: yes
-    
+
 - name: ensure python installed
   become: yes
   tags:
+    - pacman
     - required-pip
     - required-docker
   community.general.pacman:
@@ -17,3 +19,12 @@
       - python
       - python-pip
       - python-setuptools
+
+- name: ensure nfs-utils installed
+  become: yes
+  tags:
+    - pacman
+    - required-nfs
+  community.general.pacman:
+    name:
+      - nfs-utils
