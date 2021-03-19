@@ -1,0 +1,5 @@
+---
+- name: run ia-download workers
+  hosts: all
+  tasks:
+    - import_tasks: ./tasks.yml

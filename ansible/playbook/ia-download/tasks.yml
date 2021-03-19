@@ -1,0 +1,31 @@
+---
+- name: ensure ia-download target
+  become: yes
+  tags:
+    - data-getter
+    - storage
+  loop:
+    - WII
+  ansible.builtin.file:
+    owner: zero
+    path: /storage/roms/{{ item }}
+    state: directory
+
+- name: ia-download to WII
+  loop:
+    - wiiusaredump
+    - wiiusaredump2
+    - wiiusaredump3
+  tags:
+    - data-getter
+    - required-docker
+    - required-storage
+    - docker-worker
+  community.docker.docker_container:
+    name: ia-download-{{ item }}
+    image: gastrodon/ia-download
+    command: "{{ item }}"
+    pull: yes
+    restart_policy: on-failure
+    volumes:
+      - /storage/roms/WII:/ia
