@@ -2,8 +2,9 @@
 - name: include playbooks
   hosts: all
   tasks:
-    - name: include
-      loop:
-        - pacman-update
-        - python-pip
-      include_tasks: "./{{ item }}/tasks.yml"
+    - name: pacman-update-tasks
+      import_tasks: ./pacman-update/tasks.yml
+    - name: python-pip-tasks
+      import_tasks: ./python-pip/tasks.yml
+    - name: ia-download-tasks
+      import_tasks: ./ia-download/tasks.yml
