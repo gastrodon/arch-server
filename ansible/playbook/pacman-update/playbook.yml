@@ -1,6 +1,5 @@
 ---
--
-  name: update system
+- name: update system
   hosts: all
   remote_user: zero
 
