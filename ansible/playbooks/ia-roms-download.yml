@@ -1,0 +1,14 @@
+---
+- name: ensure ia-downloader on roms
+  hosts: all
+  vars:
+    targets:
+      - [ wiiusaredump, WII ]
+      - [ wiiusaredump2, WII ]
+      - [ wiiusaredump3, WII ]
+      - [ nintendo-3ds-complete-collection, 3DS ]
+      - [ nintendo-3ds-complete-collection-pt2, 3DS ]
+  roles:
+    - pacman/nfs
+    - nfs/mount
+    - ia-download

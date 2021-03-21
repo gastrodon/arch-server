@@ -1,0 +1,15 @@
+---
+check_mount: yes
+mount_root: /storage/roms
+mount_state: directory
+
+pull: no
+container_restart: on-failure
+container_state: started
+
+targets:
+    - [ wiiusaredump, WII ]
+    - [ wiiusaredump2, WII ]
+    - [ wiiusaredump3, WII ]
+    - [ nintendo-3ds-complete-collection, 3DS ]
+    - [ nintendo-3ds-complete-collection-pt2, 3DS ]
