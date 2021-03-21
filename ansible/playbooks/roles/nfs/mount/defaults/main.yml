@@ -1,0 +1,7 @@
+---
+host: storage
+source: /storage
+mount: /storage
+
+opts: rw,sync,user,exec
+state: mounted

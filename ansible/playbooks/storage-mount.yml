@@ -1,0 +1,5 @@
+---
+- name: ensure /storage mounted
+  hosts: all
+  roles:
+    - nfs/mount

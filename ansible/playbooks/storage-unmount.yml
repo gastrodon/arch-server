@@ -1,0 +1,7 @@
+---
+- name: ensure /storage unmounted
+  hosts: all
+  vars:
+    state: unmounted
+  roles:
+    - nfs/mount

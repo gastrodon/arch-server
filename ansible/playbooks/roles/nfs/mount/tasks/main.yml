@@ -1,0 +1,9 @@
+---
+- name: mount nfs
+  become: yes
+  mount:
+    src:  "{{ host }}:{{ source }}"
+    path: "{{ mount }}"
+    fstype: nfs
+    opts: "{{ opts }}"
+    state: "{{ state }}"
