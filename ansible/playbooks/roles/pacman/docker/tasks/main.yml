@@ -1,0 +1,6 @@
+---
+- name: ensure docker
+  become: yes
+  pacman:
+    name:
+      - docker

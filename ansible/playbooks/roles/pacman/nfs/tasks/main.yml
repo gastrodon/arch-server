@@ -1,0 +1,6 @@
+---
+- name: ensure nfs-utils
+  become: yes
+  pacman:
+    name:
+      - nfs-utils

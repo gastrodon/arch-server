@@ -1,0 +1,8 @@
+---
+- name: ensure python
+  become: yes
+  pacman:
+    name:
+      - python
+      - python-pop
+      - python-setuptools
