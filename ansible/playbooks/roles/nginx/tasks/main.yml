@@ -1,0 +1,23 @@
+---
+- name: ensure nginx mount targets
+  become: yes
+  loop:
+    - nginx
+    - letsencrypt
+  file:
+    owner: root
+    path: "{{ mount_root }}/nginx/{{ item }}"
+    state: "{{ mount_state }}"
+
+- name: ensure nginx container up
+  docker_container:
+    name: nginx
+    image: nginx:stable-alpine
+    pull: "{{ pull }}"
+    restart_policy: "{{ container_restart }}"
+    volumes:
+      - "{{ mount_root }}/nginx/nginx:/etc/nginx"
+      - "{{ mount_root }}/nginx/letsencrypt:/etc/letsencrypt"
+    ports:
+      - "{{ port_http }}:80"
+      - "{{ port_https }}:443"

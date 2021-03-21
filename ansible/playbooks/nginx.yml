@@ -1,0 +1,7 @@
+---
+- name: up nginx
+  hosts: router
+  roles:
+    - pacman/sync
+    - pacman/docker
+    - nginx

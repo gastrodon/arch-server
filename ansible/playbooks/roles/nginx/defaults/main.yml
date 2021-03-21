@@ -1,0 +1,9 @@
+pull: yes
+mount_root: /var/docker_volumes
+mount_state: directory
+
+container_state: started
+container_restart: unless-stopped
+
+port_http: "80"
+port_https: "443"
