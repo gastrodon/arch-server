@@ -1,0 +1,22 @@
+---
+- name: mount boot partition
+  become: yes
+  mount:
+    src: "/dev/{{ device }}{{ partition }}"
+    path: "/mnt"
+    state: "mounted"
+    fstype: vfat
+
+- name: delete EFI
+  tags:
+    - never
+  become: yes
+  file:
+    path: /mnt/EFI
+    state: absent
+
+- name: reboot
+  tags:
+    - never
+  become: yes
+  reboot:

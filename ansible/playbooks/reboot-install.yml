@@ -1,0 +1,6 @@
+---
+- name: destroy the boot partition and reboot
+  hosts: all
+  tags: never
+  roles:
+    - reboot-install
