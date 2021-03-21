@@ -3,6 +3,8 @@
   hosts: all
   vars:
     state: unmounted
+  tags:
+    - never
   roles:
     - pacman/nfs
     - nfs/mount
