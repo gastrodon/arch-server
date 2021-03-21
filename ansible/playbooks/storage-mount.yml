@@ -2,4 +2,5 @@
 - name: ensure /storage mounted
   hosts: all
   roles:
+    - pacman/nfs
     - nfs/mount

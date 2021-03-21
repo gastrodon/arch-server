@@ -4,4 +4,5 @@
   vars:
     state: unmounted
   roles:
+    - pacman/nfs
     - nfs/mount
