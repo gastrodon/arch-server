@@ -1,0 +1,7 @@
+---
+- name: up gitea
+  hosts: requestable
+  roles:
+    - pacman/sync
+    - pacman/docker
+    - gitea

@@ -7,4 +7,6 @@
     container_state: absent
     mount_state: absent
   roles:
-      - gitea
+    - pacman/sync
+    - pacman/docker
+    - gitea

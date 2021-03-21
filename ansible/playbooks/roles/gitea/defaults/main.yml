@@ -5,7 +5,7 @@ mount_state: directory
 network_name: dockernet_gitea
 network_state: present
 
-container_state: present
+container_state: started
 container_restart: unless-stopped
 
 database: gitea
