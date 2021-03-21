@@ -1,0 +1,8 @@
+---
+- name: ensure pip docker
+  tags:
+    - required-docker
+  pip:
+    name: docker
+    state: latest
+    extra_args: --user
