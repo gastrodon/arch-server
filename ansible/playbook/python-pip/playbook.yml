@@ -1,5 +1,0 @@
----
-- name: ensure global pip packages
-  hosts: all
-  tasks:
-    - import_tasks: ./tasks.yml

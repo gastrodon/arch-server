@@ -1,0 +1,5 @@
+---
+- name: update gitea hosts all
+  hosts: requestable
+  roles:
+    - gitea

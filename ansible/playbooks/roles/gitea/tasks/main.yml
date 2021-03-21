@@ -1,0 +1,80 @@
+---
+- name: ensure gitea mount targets
+  become: yes
+  tags:
+    - dependency
+  loop:
+    - mysql
+    - data
+  ansible.builtin.file:
+    owner: root
+    path: "{{ mount_root }}/gitea/{{ item }}"
+    state: "{{ mount_state }}"
+
+- name: ensure gitea docker network
+  tags:
+    - dependency
+  community.docker.docker_network:
+    name: "{{ network_name }}"
+    state: "{{ network_state }}"
+
+- name: ensure mariadb container up
+  community.docker.docker_container:
+    name: mariadb-gitea
+    image: mariadb:latest
+    pull: "{{ pull }}"
+    restart_policy: "{{ container_restart }}"
+    state: "{{ container_state }}"
+    volumes:
+      - "{{ mount_root }}/gitea/mysql:/var/lib/mysql"
+    networks:
+      - name: "{{ network_name }}"
+        aliases:
+          - mariadb
+    expose:
+      - "3306"
+    env:
+      MYSQL_RANDOM_ROOT_PASSWORD: 'true'
+      MYSQL_DATABASE: "{{ database }}"
+      MYSQL_USER: "{{ database_user }}"
+      MYSQL_PASSWORD: "{{ database_password }}"
+
+- name: ensure gitea container up
+  tags:
+    - gitea
+    - docker-server
+  community.docker.docker_container:
+    name: gitea
+    image: gitea/gitea:latest
+    pull: yes
+    restart_policy: "{{ container_restart }}"
+    state: "{{ container_state }}"
+    volumes:
+      - "{{ mount_root }}/gitea/data:/data"
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
+    networks:
+      - name: "{{ network_name }}"
+      - name: bridge
+    expose:
+      - "3000"
+      - "22"
+    ports:
+      - "{{ port_ssh }}:22"
+      - "{{ port_http }}:3000"
+    env:
+      APP_NAME: Gastrodon Git
+      DOMAIN: git.gastrodon.io
+      ROOT_URL: https://git.gastrodon.io
+      SSH_DOMAIN: ssh://git@git.gastrodon.io:3022
+
+      USER_UID: "1000"
+      USER_GID: "1000"
+
+      DB_TYPE: mysql
+      DB_HOST: mariadb:3306
+      DB_NAME: "{{ database }}"
+      DB_USER: "{{ database_user }}"
+      DB_PASSWD: "{{ database_password }}"
+
+      INSTALL_LOCK: "true"

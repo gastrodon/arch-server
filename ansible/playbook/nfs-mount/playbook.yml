@@ -1,6 +1,0 @@
----
-- name: manage the /storage nfs mount
-  hosts: nfs_mounter
-  become: yes
-  tasks:
-    - import_tasks: ./tasks.yml

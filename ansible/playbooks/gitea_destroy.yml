@@ -1,0 +1,10 @@
+---
+- name: destroy gitea
+  hosts: requestable
+  vars:
+    pull: no
+    network_state: absent
+    container_state: absent
+    mount_state: absent
+  roles:
+      - gitea
