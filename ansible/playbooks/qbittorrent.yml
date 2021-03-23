@@ -1,0 +1,10 @@
+---
+- name: up qbittorrent
+  hosts: nfs_owner
+  roles:
+      - pacman/sync
+      - pacman/docker
+      - pacman/nfs
+      - pip/docker
+      - nfs/mount
+      - qbittorrent
