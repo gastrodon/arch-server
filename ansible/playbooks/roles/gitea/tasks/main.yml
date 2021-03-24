@@ -55,13 +55,12 @@
       - /etc/localtime:/etc/localtime:ro
     networks:
       - name: "{{ network_name }}"
-      - name: bridge
+      - name: "{{ router_network }}"
+        aliases:
+          - gitea
     expose:
       - "3000"
       - "22"
-    ports:
-      - "{{ port_ssh }}:22"
-      - "{{ port_http }}:3000"
     env:
       APP_NAME: Gastrodon Git
       DOMAIN: git.gastrodon.io

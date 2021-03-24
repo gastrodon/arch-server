@@ -1,0 +1,5 @@
+---
+- name: ensure router docker network
+  docker_network:
+    name: "{{ network_name }}"
+    state: "{{ network_state}}"
