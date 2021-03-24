@@ -1,6 +1,4 @@
 arch/airootfs/etc/pacman.d/mirrorlist
 arch/airootfs/etc/options/override/*
 arch/airootfs/home/zero/.ssh/*
-out/*
-!out/,gitignore
 ansible/inventory
