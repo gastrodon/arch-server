@@ -22,6 +22,8 @@
     image: nginx:stable-alpine
     pull: "{{ pull }}"
     restart_policy: "{{ container_restart }}"
+    networks:
+      - name: "{{ router_network }}"
     volumes:
       - "{{ mount_root }}/nginx/nginx:/etc/nginx"
       - "{{ mount_root }}/nginx/ssl:/etc/ssl"

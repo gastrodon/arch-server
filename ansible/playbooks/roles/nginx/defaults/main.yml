@@ -5,5 +5,7 @@ mount_state: directory
 container_state: started
 container_restart: unless-stopped
 
+router_network: routable
+
 port_http: "80"
 port_https: "443"
