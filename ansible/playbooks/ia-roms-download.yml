@@ -10,5 +10,4 @@
       - [ nintendo-3ds-complete-collection-pt2, 3DS ]
   roles:
     - pacman/nfs
-    - nfs/mount
     - ia-download

@@ -6,6 +6,5 @@
       - pacman/docker
       - pacman/nfs
       - pip/docker
-      - nfs/mount
       - network/router
       - qbittorrent
