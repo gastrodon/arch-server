@@ -2,11 +2,10 @@
 - name: up qbittorrent
   hosts: all
   vars:
-    mount_root: /var/docker-volumes
+    mount_root: /var/docker_volumes
   roles:
       - pacman/sync
       - pacman/docker
       - pacman/nfs
       - pip/docker
-      - nfs/mount
       - qbittorrent

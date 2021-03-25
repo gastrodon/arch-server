@@ -1,5 +1,5 @@
 ---
-- name: ensure qbittorent mount
+- name: ensure qbittorrent mount
   become: yes
   loop:
     - downloads
@@ -9,9 +9,9 @@
     path: "{{ mount_root}}/qbittorrent/{{ item }}"
     state: "{{ mount_state }}"
 
-- name: ensure qbittorent container up
+- name: ensure qbittorrent container up
   docker_container:
-    name: qbittorent
+    name: qbittorrent
     image: ghcr.io/linuxserver/qbittorrent
     pull: "{{ pull }}"
     restart_policy: "{{ container_restart }}"
@@ -20,10 +20,12 @@
       PGID: "1000"
       WEBUI_PORT: "{{ port_http }}"
       TZ: "{{ timezone }}"
+    networks:
+      - name: "{{ router_network }}"
+        aliases:
+          - qbittorrent
     volumes:
-      - "{{ mount_root }}/qbittorent/downloads:/downloads"
-      - "{{ mount_root }}/qbittorent/config:/config"
-    ports:
-      - "{{ port_http }}:{{ port_http }}"
-      - "6881:6881"
-      - "6881:6881/udp"
+      - "{{ mount_root }}/qbittorrent/downloads:/downloads"
+      - "{{ mount_root }}/qbittorrent/config:/config"
+    expose:
+      - "{{ port_http }}"

@@ -4,5 +4,7 @@ mount_state: directory
 pull: no
 container_restart: unless-stopped
 
-port_http: "8080"
+router_network: routable
+
+port_http: "8000"
 timezone: America/New-York

@@ -1,4 +1,8 @@
 arch/airootfs/etc/pacman.d/mirrorlist
 arch/airootfs/etc/options/override/*
 arch/airootfs/home/zero/.ssh/*
+
 ansible/inventory
+
+ansible/playbooks/roles/nginx/files/ssl/*
+!ansible/playbooks/roles/nginx/files/ssl/.gitignore
