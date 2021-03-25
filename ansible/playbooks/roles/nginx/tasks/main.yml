@@ -21,6 +21,7 @@
     name: nginx
     image: nginx:stable-alpine
     pull: "{{ pull }}"
+    restart: yes
     restart_policy: "{{ container_restart }}"
     networks:
       - name: "{{ router_network }}"
@@ -30,6 +31,3 @@
     ports:
       - "{{ port_http }}:80"
       - "{{ port_https }}:443"
-
-- name: ensure nginx restarted
-  script: "/usr/bin/env docker restart nginx"
