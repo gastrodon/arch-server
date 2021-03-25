@@ -1,6 +1,6 @@
 ---
 - name: up minecraft
-  hosts: router
+  hosts: all
   roles:
     - pacman/sync
     - pacman/docker
