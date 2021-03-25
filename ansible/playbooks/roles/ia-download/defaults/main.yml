@@ -1,11 +1,12 @@
 ---
-check_mount: yes
-mount_root: /storage/roms
-mount_state: directory
+mount:
+  root: /var/docker_volumes
+  state: directory
 
-pull: no
-container_restart: on-failure
-container_state: started
+container:
+  pull: no
+  restart: on-failure
+  state: started
 
 targets:
     - [ wiiusaredump, WII ]

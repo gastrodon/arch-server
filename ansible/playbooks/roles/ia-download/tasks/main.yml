@@ -2,11 +2,10 @@
 - name: ensure ia-download mount item
   loop: "{{ targets }}"
   become: yes
-  when: check_mount == "yes"
   file:
     owner: root
-    path: "{{ mount_root }}/{{ item.1 }}"
-    state: "{{ mount_state }}"
+    path: "{{ mount.root }}/{{ item.1 }}"
+    state: "{{ mount.state }}"
 
 - name: ia-download target
   run_once: true
@@ -14,9 +13,9 @@
   docker_container:
     name: ia-download-{{ item.0 }}
     image: gastrodon/ia-download:latest
-    pull: "{{ pull}}"
+    pull: "{{ container.pull}}"
     command: "{{ item.0 }}"
-    restart_policy: "{{ container_restart }}"
-    state: "{{ container_state }}"
+    restart_policy: "{{ container.restart }}"
+    state: "{{ container.state }}"
     volumes:
-      - "{{ mount_root }}/{{ item.1 }}:/ia"
+      - "{{ mount.root }}/{{ item.1 }}:/ia"
