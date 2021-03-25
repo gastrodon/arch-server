@@ -30,3 +30,6 @@
     ports:
       - "{{ port_http }}:80"
       - "{{ port_https }}:443"
+
+- name: ensure nginx restarted
+  script: "/usr/bin/env docker restart nginx"
