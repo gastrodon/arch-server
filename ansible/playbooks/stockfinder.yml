@@ -1,0 +1,8 @@
+---
+- name: up stockfinder api
+  hosts: requestable
+  roles:
+    - pacman/sync
+    - pacman/docker
+    - network/router
+    - stockfinder

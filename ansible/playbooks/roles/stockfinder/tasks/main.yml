@@ -1,0 +1,146 @@
+---
+- name: ensure mount targets
+  become: yes
+  loop:
+    - connection
+    - "{{ stock.database.name }}-init"
+    - "{{ scyther.database.name }}-init"
+  file:
+    owner: root
+    path: "{{ mount.root }}/stock/{{ item }}"
+    state: "{{ mount.state}}"
+
+- name: ensure mariadb mount targets
+  become: yes
+  loop:
+    - "{{ stock }}"
+    - "{{ scyther }}"
+  file:
+    owner: root
+    path: "{{ mount.root }}/stock/{{ item.database.name }}/mysql"
+    state: "{{ mount.state }}"
+
+- name: ensure mariadb init mount targets
+  become: yes
+  loop:
+    - "{{ stock }}"
+    - "{{ scyther }}"
+  file:
+    owner: root
+    path: "{{ mount.root }}/stock/{{ item.database.name }}/init"
+    state: "{{ mount.state }}"
+
+- name: ensure loader / fetcher connection file
+  become: yes
+  copy:
+    owner: root
+    src: files/connection/connection.json
+    dest: "{{ mount.root }}/stock/connection"
+
+- name: ensure mariadb init files
+  become: yes
+  loop:
+    - 00_table
+    - 01_tickers
+  copy:
+    owner: root
+    src: files/stock-init/{{ item }}.sql
+    dest: "{{ mount.root }}/stock/{{ stock.database.name }}/init"
+
+- name: ensure networks
+  loop:
+    - "{{ stock }}"
+    - "{{ scyther }}"
+  docker_network:
+    name: "{{ item.network.name }}"
+    state: "{{ item.network.state }}"
+
+- name: ensure mariadb containers
+  loop:
+    - "{{ stock }}"
+    - "{{ scyther }}"
+  docker_container:
+    name: stock-{{ item.database.name }}-mariadb
+    image: mariadb:latest
+    pull: "{{ item.database.pull }}"
+    restart_policy: "{{ item.database.restart }}"
+    state: "{{ item.database.state }}"
+
+    volumes:
+      - "{{ mount.root }}/stock/{{ item.database.name }}/mysql:/var/lib/mysql"
+      - "{{ mount.root }}/stock/{{ item.database.name }}/init:/docker-entrypoint-initdb.d"
+
+    networks:
+      - name: "{{ item.network.name }}"
+        aliases:
+          - mariadb-{{ item.database.name }}
+
+    expose:
+      - "3306"
+
+    env:
+      MYSQL_RANDOM_ROOT_PASSWORD: 'true'
+      MYSQL_DATABASE: "{{ item.database.name }}"
+      MYSQL_USER: "{{ item.database.user }}"
+      MYSQL_PASSWORD: "{{ item.database.password }}"
+
+- name: ensure scyther up
+  docker_container:
+    name: stock-scyther
+    image: gastrodon/scyther
+    pull: "{{ scyther.container.pull }}"
+    restart_policy: "{{ scyther.container.restart }}"
+    state: "{{ scyther.container.state }}"
+
+    env:
+      SCYTHER_CONNECTION: "scyther:scyther@tcp(mariadb-{{ scyther.database.name }})/scyther"
+
+    networks:
+      - name: "{{ scyther.network.name }}"
+        aliases:
+          - scyther
+
+    expose:
+      - "8000"
+
+- name: ensure loader / fetcher up
+  loop:
+    - loader
+    - fetcher
+  docker_container:
+    name: stock-{{ item }}
+    image: gastrodon/stock-{{ item }}
+    pull: "{{ stock.container.pull }}"
+    restart_policy: "{{ stock.container.restart }}"
+    state: "{{ stock.container.state }}"
+
+    env:
+      STOCKFINDER_QUEUE: tickers
+      STOCKFINDER_SCYTHER: http://scyther:8000
+
+    networks:
+      - name: "{{ scyther.network.name }}"
+      - name: "{{ stock.network.name }}"
+
+    volumes:
+      - "{{ mount.root }}/stock/connection:/app/connection"
+
+- name: ensure stockfinder up
+  docker_container:
+    name: stock-api
+    image: gastrodon/stockfinder
+    pull: "{{ stock.container.pull }}"
+    restart_policy: "{{ stock.container.restart }}"
+    state: "{{ stock.container.state }}"
+
+    env:
+      STOCKFINDER_CONNECTION="stock:stock@tcp(mariadb-{{ stock.database.name }})/stock"
+
+    networks:
+      - name: "{{ stock.network.name }}"
+      - name: "{{ router_network }}"
+        aliases:
+          - stock
+
+    expose:
+      - "8000"

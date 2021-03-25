@@ -1,0 +1,45 @@
+router_network: routable
+
+mount:
+  root: /var/docker_volumes
+  state: directory
+
+stock:
+  container:
+    pull: yes
+    restart: unless-stopped
+    state: started
+
+  network:
+    name: dockernet_stock
+    state: present
+
+  database:
+    name: stock
+
+    pull: yes
+    restart: unless-stopped
+    state: started
+
+    user: stock
+    password: stock
+
+scyther:
+  container:
+    pull: yes
+    restart: unless-stopped
+    state: started
+
+  network:
+    name: dockernet_scyther
+    state: present
+
+  database:
+    name: scyther
+
+    pull: yes
+    restart: unless-stopped
+    state: started
+
+    user: scyther
+    password: scyther

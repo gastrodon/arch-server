@@ -6,3 +6,6 @@ ansible/inventory
 
 ansible/playbooks/roles/nginx/files/ssl/*
 !ansible/playbooks/roles/nginx/files/ssl/.gitignore
+
+ansible/playbooks/roles/stockfinder/files/connection/*
+!ansible/playbooks/roles/stockfinder/files/connection/.gitignore
