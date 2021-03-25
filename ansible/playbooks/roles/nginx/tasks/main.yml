@@ -3,8 +3,8 @@
   become: yes
   file:
     owner: root
-    path: "{{ mount_root }}/nginx"
-    state: "{{ mount_state }}"
+    path: "{{ mount.root }}/nginx"
+    state: "{{ mount.state }}"
 
 - name: ensure nginx files populated
   become: yes
@@ -14,20 +14,20 @@
   copy:
     owner: root
     src: "files/{{ item }}"
-    dest: "{{ mount_root }}/nginx"
+    dest: "{{ mount.root }}/nginx"
 
 - name: ensure nginx container up
   docker_container:
     name: nginx
     image: nginx:stable-alpine
-    pull: "{{ pull }}"
+    pull: "{{ container.pull }}"
     restart: yes
-    restart_policy: "{{ container_restart }}"
+    restart_policy: "{{ container.restart }}"
     networks:
       - name: "{{ router_network }}"
     volumes:
-      - "{{ mount_root }}/nginx/nginx:/etc/nginx"
-      - "{{ mount_root }}/nginx/ssl:/etc/ssl"
+      - "{{ mount.root }}/nginx/nginx:/etc/nginx"
+      - "{{ mount.root }}/nginx/ssl:/etc/ssl"
     ports:
-      - "{{ port_http }}:80"
-      - "{{ port_https }}:443"
+      - "{{ container.port.http }}:80"
+      - "{{ container.port.https }}:443"

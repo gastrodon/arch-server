@@ -1,11 +1,14 @@
-pull: yes
-mount_root: /var/docker_volumes
-mount_state: directory
-
-container_state: started
-container_restart: unless-stopped
-
 router_network: routable
 
-port_http: "80"
-port_https: "443"
+mount:
+  root: /var/docker_volumes
+  state: directory
+
+container:
+  pull: yes
+  restart: unless-stopped
+  state: started
+
+  port:
+    http: "80"
+    https: "443"
