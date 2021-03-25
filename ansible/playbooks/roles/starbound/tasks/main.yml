@@ -1,0 +1,30 @@
+---
+- name: ensure starbound mount targets
+  become: yes
+  file:
+    owner: root
+    path: "{{ mount.root }}/starbound/steamcmd"
+    state: "{{ mount.state }}"
+
+- name: ensure starbound files populated
+  become: yes
+  copy:
+    owner: root
+    src: files/starbound
+    dest: "{{ mount.root }}/starbound/steamcmd"
+
+- name: ensure starbound container up
+  docker_container:
+    name: starbound
+    image: didstopia/starbound-server
+    pull: "{{ container.pull }}"
+    restart_policy: "{{ container.restart }}"
+    tty: yes
+    interactive: yes
+
+    env:
+      STEAM_USERNAME="{{ username }}"
+      STEAM_PASSWORD="{{ password }}"
+
+    ports:
+      - "{{ container.port.tcp }}:21025"

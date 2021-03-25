@@ -12,3 +12,6 @@ ansible/playbooks/roles/stockfinder/files/connection/*
 
 ansible/playbooks/roles/minecraft/files/*/*
 !ansible/playbooks/roles/minecraft/files/*/.gitignore
+
+ansible/playbooks/roles/starbound/files/*/*
+!ansible/playbooks/roles/starbound/files/*/.gitignore

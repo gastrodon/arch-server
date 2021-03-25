@@ -1,0 +1,7 @@
+---
+- name: starbound
+  hosts: all
+  roles:
+    - pacman/sync
+    - pacman/docker
+    - starbound
