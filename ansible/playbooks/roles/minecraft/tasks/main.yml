@@ -1,0 +1,27 @@
+---
+- name: ensure minecraft mount targets
+  become: yes
+  file:
+    owner: root
+    path: "{{ mount.root }}/minecraft/data"
+    state: "{{ mount.state}}"
+
+- name: ensure minecraft files populated
+  become: yes
+  copy:
+    owner: root
+    src: files/vanilla/data
+    dest: "{{ mount.root }}/minecraft"
+
+- name: ensure minecraft vanilla container up
+  docker_container:
+    name: minecraft-vanilla
+    image: itzg/minecraft-server
+    pull: "{{ container.pull }}"
+    restart_policy: "{{ container.restart }}"
+
+    ports:
+      - "{{ container.port_tcp }}:25565"
+
+    volumes:
+      - "{{ mount.root }}/minecraft/data:/data"

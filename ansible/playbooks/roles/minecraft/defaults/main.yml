@@ -1,0 +1,8 @@
+mount:
+  root:  /var/docker_volumes
+  state: directory
+
+container:
+  pull: no
+  restart: on-failure
+  port_tcp: "25565"

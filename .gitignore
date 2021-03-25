@@ -9,3 +9,6 @@ ansible/playbooks/roles/nginx/files/ssl/*
 
 ansible/playbooks/roles/stockfinder/files/connection/*
 !ansible/playbooks/roles/stockfinder/files/connection/.gitignore
+
+ansible/playbooks/roles/minecraft/files/*/*
+!ansible/playbooks/roles/minecraft/files/*/.gitignore
