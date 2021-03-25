@@ -4,7 +4,6 @@
   roles:
       - pacman/sync
       - pacman/docker
-      - pacman/nfs
       - pip/docker
       - network/router
       - qbittorrent

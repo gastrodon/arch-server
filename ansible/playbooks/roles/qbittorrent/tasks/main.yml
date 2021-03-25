@@ -6,26 +6,26 @@
     - config
   file:
     owner: root
-    path: "{{ mount_root}}/qbittorrent/{{ item }}"
-    state: "{{ mount_state }}"
+    path: "{{ mount.root}}/qbittorrent/{{ item }}"
+    state: "{{ mount.state }}"
 
 - name: ensure qbittorrent container up
   docker_container:
     name: qbittorrent
     image: ghcr.io/linuxserver/qbittorrent
-    pull: "{{ pull }}"
-    restart_policy: "{{ container_restart }}"
+    pull: "{{ container.pull }}"
+    restart_policy: "{{ container.restart }}"
     env:
       PUID: "1000"
       PGID: "1000"
-      WEBUI_PORT: "{{ port_http }}"
+      WEBUI_PORT: "{{ container.port.http }}"
       TZ: "{{ timezone }}"
     networks:
       - name: "{{ router_network }}"
         aliases:
           - qbittorrent
     volumes:
-      - "{{ mount_root }}/qbittorrent/downloads:/downloads"
-      - "{{ mount_root }}/qbittorrent/config:/config"
+      - "{{ mount.root }}/qbittorrent/downloads:/downloads"
+      - "{{ mount.root }}/qbittorrent/config:/config"
     expose:
-      - "{{ port_http }}"
+      - "{{ container.port.http }}"
