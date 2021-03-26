@@ -6,5 +6,5 @@
   tags:
     - never
   roles:
-    - pacman/nfs
+    - apt/nfs
     - nfs/mount

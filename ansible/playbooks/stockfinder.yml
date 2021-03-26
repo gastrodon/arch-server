@@ -2,7 +2,7 @@
 - name: up stockfinder api
   hosts: requestable
   roles:
-    - pacman/sync
-    - pacman/docker
+    - apt/sync
+    - apt/docker
     - network/router
     - stockfinder

@@ -2,8 +2,8 @@
 - name: up qbittorrent
   hosts: nfs_owner
   roles:
-      - pacman/sync
-      - pacman/docker
+      - apt/sync
+      - apt/docker
       - pip/docker
       - network/router
       - qbittorrent

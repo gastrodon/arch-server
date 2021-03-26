@@ -1,0 +1,6 @@
+---
+- name: ensure nfs-utils
+  become: yes
+  apt:
+    name:
+      - nfs-common

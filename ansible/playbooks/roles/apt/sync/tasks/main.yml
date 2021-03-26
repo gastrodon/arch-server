@@ -1,0 +1,6 @@
+---
+- name: pacman sync
+  become: yes
+  apt:
+    update_cache: yes
+    upgrade: yes

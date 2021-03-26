@@ -9,5 +9,5 @@
       - [ nintendo-3ds-complete-collection, 3DS ]
       - [ nintendo-3ds-complete-collection-pt2, 3DS ]
   roles:
-    - pacman/nfs
+    - apt/nfs
     - ia-download

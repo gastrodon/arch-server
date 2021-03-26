@@ -2,5 +2,5 @@
 - name: ensure /storage mounted
   hosts: all
   roles:
-    - pacman/nfs
+    - apt/nfs
     - nfs/mount

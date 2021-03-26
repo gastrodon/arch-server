@@ -2,6 +2,6 @@
 - name: up minecraft
   hosts: all
   roles:
-    - pacman/sync
-    - pacman/docker
+    - apt/sync
+    - apt/docker
     - minecraft

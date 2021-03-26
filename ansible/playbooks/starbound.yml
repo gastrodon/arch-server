@@ -2,6 +2,6 @@
 - name: starbound
   hosts: all
   roles:
-    - pacman/sync
-    - pacman/docker
+    - apt/sync
+    - apt/docker
     - starbound
