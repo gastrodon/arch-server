@@ -1,0 +1,5 @@
+- name: ensure pip docker requirements
+  hosts: all
+  roles:
+    - apt/python
+    - pip/docker
