@@ -1,0 +1,102 @@
+---
+- name: ensure teamcity mount targets
+  become: yes
+  loop:
+    - mysql
+    - server_data
+    - server_logs
+    - agent_config
+    - agent_plugins
+    - agent_system
+    - agent_temp
+    - agent_tools
+    - agent_work
+  file:
+    owner: root
+    path: "{{ mount.root }}/teamcity/{{ item }}"
+    state: "{{ mount.state }}"
+
+- name: ensure teamcity agent config populated
+  become: yes
+  copy:
+    src: files/buildAgent.properties
+    dest: "{{ mount.root }}/teamcity/agent_config"
+
+- name: ensure teamcity docker network
+  docker_network:
+    name: "{{ network.name }}"
+    state: "{{ network.state }}"
+
+- name: ensure mariadb container up
+  docker_container:
+    name: teamcity-mariadb
+    image: mariadb:latest
+    restart_policy: on-failure
+    pull: "{{ pull }}"
+    restart: "{{ restart }}"
+    state: "{{ state }}"
+
+    volumes:
+      - "{{ mount.root }}/teamcity/mysql:/var/lib/mysql"
+
+    networks:
+      - name: "{{ network.name }}"
+        aliases:
+          - mariadb
+
+    expose:
+      - "3306"
+
+    env:
+      MYSQL_RANDOM_ROOT_PASSWORD: "true"
+      MYSQL_DATABASE: "{{ database.name }}"
+      MYSQL_USER: "{{ database.user }}"
+      MYSQL_PASSWORD: "{{ database.password }}"
+
+- name: ensure teamcity server container up
+  docker_container:
+    name: teamcity-server
+    image: jetbrains/teamcity-server
+    user: root
+    restart_policy: on-failure
+    pull: "{{ pull }}"
+    restart: "{{ restart }}"
+    state: "{{ state }}"
+
+    volumes:
+      - "{{ mount.root }}/teamcity/server_data:/data/teamcity_server/datadir"
+      - "{{ mount.root }}/teamcity/logs:/opt/teamcity/logs"
+
+    networks:
+      - name: "{{ network.name }}"
+        aliases:
+          - teamcity
+      - name: "{{ router_network }}"
+        aliases:
+          - teamcity
+
+    expose:
+      - "8111"
+
+- name: ensure teamcity agent container up
+  docker_container:
+    name: teamcity-agent
+    image: jetbrains/teamcity-agent:2020.2.1-linux-sudo
+    user: root
+    restart_policy: on-failure
+
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock"
+      - "{{ mount.root }}/teamcity/agent_config:/opt/buildagent/conf"
+      - "{{ mount.root }}/teamcity/agent_plugins:/opt/buildagent/plugins"
+      - "{{ mount.root }}/teamcity/agent_system:/opt/buildagent/system"
+      - "{{ mount.root }}/teamcity/agent_temp:/opt/buildagent/temp"
+      - "{{ mount.root }}/teamcity/agent_tools:/opt/buildagent/tools"
+      - "{{ mount.root }}/teamcity/agent_work:/opt/buildagent/work"
+
+    networks:
+      - name: "{{ network.name }}"
+
+    env:
+      SERVER_URL: teamcity:8111
+      DOCKER_IN_DOCKER: start

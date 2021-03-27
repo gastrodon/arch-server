@@ -1,0 +1,5 @@
+---
+- name: bring up teamcity server
+  hosts: all
+  roles:
+    - teamcity
