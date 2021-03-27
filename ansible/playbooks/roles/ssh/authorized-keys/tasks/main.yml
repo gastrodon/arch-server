@@ -1,0 +1,14 @@
+---
+- name: ensure ssh key allowed
+  become: no
+  copy:
+    owner: zero
+    mode: 0664
+    src: files/authorized_keys
+    dest: /home/zero/.ssh/authorized_keys
+
+- name: reload sshd.service
+  become: yes
+  systemd:
+    name: sshd.service
+    state: reloaded

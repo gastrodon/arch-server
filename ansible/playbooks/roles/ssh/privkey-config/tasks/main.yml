@@ -1,0 +1,8 @@
+---
+- name: ensure ssh key allowed
+  become: yes
+  copy:
+    owner: root
+    mode: 0644
+    src: files/sshd_config
+    dest: /etc/ssh/sshd_config
