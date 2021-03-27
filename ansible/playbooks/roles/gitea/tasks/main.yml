@@ -1,8 +1,6 @@
 ---
 - name: ensure gitea mount targets
   become: yes
-  tags:
-    - dependency
   loop:
     - mysql
     - data
@@ -12,8 +10,6 @@
     state: "{{ mount_state }}"
 
 - name: ensure gitea docker network
-  tags:
-    - dependency
   community.docker.docker_network:
     name: "{{ network_name }}"
     state: "{{ network_state }}"
@@ -40,9 +36,6 @@
       MYSQL_PASSWORD: "{{ database_password }}"
 
 - name: ensure gitea container up
-  tags:
-    - gitea
-    - docker-server
   community.docker.docker_container:
     name: gitea
     image: gitea/gitea:latest
