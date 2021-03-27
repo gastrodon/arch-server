@@ -1,0 +1,6 @@
+---
+- name: Ensure user zero exists
+  hosts: all
+  user: root
+  roles:
+    - user/create
