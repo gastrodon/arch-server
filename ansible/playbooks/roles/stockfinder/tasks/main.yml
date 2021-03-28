@@ -144,3 +144,20 @@
 
     expose:
       - "8000"
+
+- name: ensure frontend up
+  docker_container:
+    name: stock-web
+    image: gastrodon/stock-web
+    pull: "{{ stock.container.pull }}"
+    restart_policy: on-failure
+    state: started
+
+    networks:
+      - name: "{{ stock.network.name }}"
+      - name: "{{ router_network }}"
+        aliases:
+          - web
+
+    expose:
+      - "5000"
