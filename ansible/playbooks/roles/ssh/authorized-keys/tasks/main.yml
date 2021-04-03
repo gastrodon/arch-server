@@ -1,6 +1,17 @@
 ---
+- name: ensure ~/.ssh exists
+  become: yes
+  become_user: zero
+  become_method: su
+  file:
+    owner: zero
+    path: /home/zero/.ssh
+    state: directory
+
 - name: ensure ssh key allowed
-  become: no
+  become: yes
+  become_user: zero
+  become_method: su
   copy:
     owner: zero
     mode: 0664
@@ -9,6 +20,8 @@
 
 - name: reload sshd.service
   become: yes
+  become_user: root
+  become_method: su
   systemd:
     name: sshd.service
     state: reloaded

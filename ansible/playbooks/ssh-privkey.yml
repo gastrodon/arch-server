@@ -1,6 +1,7 @@
 ---
 - name: ensure ssh uses privkey for config
   hosts: all
+  user: root
   roles:
     - ssh/authorized-keys
     - ssh/privkey-config
