@@ -1,0 +1,12 @@
+
+mount:
+  root: /var/docker_volumes
+  state: directory
+
+network:
+  name: dockernet_stock
+  state: present
+
+container:
+  pull: yes
+  state: started
