@@ -1,0 +1,51 @@
+---
+- name: ensure dev-scyther mount targets
+  become: yes
+  loop:
+    - mysql
+  ansible.builtin.file:
+    owner: root
+    path: "{{ mount.root }}/dev-scyther/{{ item }}"
+    state: "{{ mount.state }}"
+
+- name: ensure dev-scyther docker network
+  community.docker.docker_network:
+    name: "{{ network.name }}"
+    state: "{{ network.state }}"
+
+- name: ensure mariadb container up
+  community.docker.docker_container:
+    name: dev-scyther-mariadb
+    image: mariadb:latest
+    pull: yes
+    restart_policy: on-failure
+    state: "{{ container.state }}"
+    volumes:
+      - "{{ mount.root }}/dev-scyther/mysql:/var/lib/mysql"
+    networks:
+      - name: "{{ network.name }}"
+        aliases:
+          - mariadb
+    expose:
+      - "3306"
+    env:
+      MYSQL_RANDOM_ROOT_PASSWORD: 'true'
+      MYSQL_DATABASE: scyther
+      MYSQL_USER: scyther
+      MYSQL_PASSWORD: scyther
+
+- name: ensure scyther container up
+  docker_container:
+    name: dev-scyther
+    image: gastrodon/scyther:latest
+    pull: yes
+    restart_policy: on-failure
+    state: "{{ container.state }}"
+    networks:
+      - name: "{{ network.name }}"
+
+    ports:
+      - "5000:8000"
+
+    env:
+      SCYTHER_CONNECTION: "scyther:scyther@tcp(mariadb)/scyther"

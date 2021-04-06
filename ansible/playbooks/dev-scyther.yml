@@ -1,0 +1,7 @@
+---
+- name: up dev-scyther
+  hosts: all
+  roles:
+    - apt/sync
+    - apt/docker
+    - dev/scyther
