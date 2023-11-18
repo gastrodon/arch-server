@@ -4,12 +4,12 @@ arch-install-scripts
 base
 cloud-init
 dosfstools
+edk2-shell
 linux
+memtest86+
 mkinitcpio
 mkinitcpio-archiso
 reflector
 rsync
 syslinux
 zsh
-memtest86+
-edk2-shell
