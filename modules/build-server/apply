@@ -6,6 +6,7 @@ else
   git clone https://github.com/gastrodon/arch-server /opt/arch-server
 fi
 
+mkdir -p /etc/nginx/sites-enabled
 cat <<EOF >> /etc/nginx/sites-enabled/default
 location / {
   root /arch-server/build
