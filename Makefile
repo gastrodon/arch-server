@@ -7,9 +7,8 @@ build: clean
 	@mkdir -p /arch-server/w 
 	@mkarchiso -v -w /arch-server/w -o /arch-server ./arch
 
+VERSION := $(git describe --tags)
 release: build
-	VERSION := $(git describe --tags)
-	
 	@git describe --tags
 	@[ -z "$(git status --porcelain)" ]
 	@mkdir -p /arch-server/build
