@@ -7,11 +7,20 @@ else
 fi
 
 mkdir -p /etc/nginx/sites-enabled
-cat <<EOF >> /etc/nginx/sites-enabled/default
-location / {
-  root /arch-server/build
+cat <<EOF > /etc/nginx/sites-enabled/default
+server {
+  listen        8080;
+  server_name   www.mysite.com mysite.com;
+  error_log     /home/www-data/logs/nginx_www.error.log;
+  error_page    404    /404.html;
+
+  location /iso {
+    autoindex         on;
+    alias             /arch-server/build
+    try_files         $uri;
+  }
 }
+EOF
 
 systemctl enable nginx
 systemctl restart nginx
-EOF
