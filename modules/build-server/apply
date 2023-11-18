@@ -1,6 +1,6 @@
 pacman -Sy --noconfirm git make archiso vim
-if [ -d arch-iso ]; then
-  git -C arch-server pull;
+if [ -d /opt/arch-server ]; then
+  git -C /opt/arch-server pull;
 else
-  git clone https://github.com/gastrodon/arch-server
+  git clone https://github.com/gastrodon/arch-server /opt/arch-server
 fi
