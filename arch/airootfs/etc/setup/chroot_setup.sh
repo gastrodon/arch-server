@@ -66,3 +66,4 @@ grub-install \
 grub-mkconfig -o /boot/grub/grub.cfg
 
 curl https://aviary.sh/install | bash
+echo inventory_git_url=https://github.com/gastrodon/arch-server >> /var/lib/aviary/config
