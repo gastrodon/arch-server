@@ -3,11 +3,11 @@ dhcpcd
 docker
 efibootmgr
 grub
+inetutils
 linux
 linux-firmware
 lvm2
 neofetch
-net-tools
 openssh
 python
 python-setuptools
