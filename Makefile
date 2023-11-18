@@ -1,7 +1,7 @@
 COUNTRY_CODE?=US
 
 clean:
-	@rm -rf /tmp/work
+	@rm -rf /arch-server/build
 
 build: clean
-	@mkarchiso -v -w /tmp/work -o /tmp ./arch
+	@mkarchiso -v -w /arch-server/build -o /tmp ./arch
