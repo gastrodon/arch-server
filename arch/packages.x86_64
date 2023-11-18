@@ -11,3 +11,5 @@ reflector
 rsync
 syslinux
 zsh
+memtest86+
+edk2-shell
