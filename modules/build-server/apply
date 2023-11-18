@@ -1,6 +1,15 @@
-pacman -Sy --noconfirm git make archiso vim
+pacman -Sy --noconfirm archiso git make nginx vim
+
 if [ -d /opt/arch-server ]; then
   git -C /opt/arch-server pull;
 else
   git clone https://github.com/gastrodon/arch-server /opt/arch-server
 fi
+
+cat <<EOF >> /etc/nginx/sites-enabled/default
+location / {
+  root /arch-server/build
+}
+
+systemctl enable nginx
+systemctl restart nginx
