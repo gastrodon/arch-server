@@ -1,0 +1,26 @@
+pacman -Sy sops age jq zip
+
+curl -L https://github.com/skeema/skeema/releases/download/v$skeema_version/skeema_$skeema_version\_linux_amd64.tar.gz -o /tmp/skeema.tar.gz
+tar xfz /tmp/skeema.tar.gz -C /usr/local/bin
+chmod +x /usr/local/bin/skeema
+
+curl -L "https://github.com/actions/runner/releases/download/v$runner_version/actions-runner-linux-x64-$runner_version.tar.gz" -o /tmp/runner.tar.gz
+mkdir -p /opt/runner
+tar xfz /tmp/runner.tar.gz -C /opt/runner
+
+export RUNNER_ALLOW_RUNASROOT=1
+cd /opt/runner
+./config.sh --replace --name actions-runner-$(curl http://169.254.169.254/latest/meta-data/instance-id) \
+    --unattended --url https://github.com/$github_user_repo \
+    --labels useast1 \
+    $github_runner_config_extra \
+    --token $(curl -XPOST \
+      -H 'Accept: application/vnd.github+json' \
+      -H "Authorization: Bearer $github_token" \
+      -H 'X-GitHub-Api-Version: 2022-11-28' \
+      https://api.github.com/${github_runner_scope:-repo}/$github_user_repo/actions/runners/registration-token | jq .token -r)
+
+chown -R ubuntu:ubuntu /opt/runner
+su ubuntu -c 'export RUNNER_ALLOW_RUNASROOT=1 && sudo ./svc.sh install && sudo ./svc.sh start'
+
+echo '*/5 * * * * docker system prune -af --filter "until=168h"' | crontab

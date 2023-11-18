@@ -1,0 +1,2 @@
+pacman -Sy --noconfirm git make archiso vim
+git clone https://github.com/gastrodon/arch-iso
