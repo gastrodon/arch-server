@@ -5,6 +5,7 @@ base
 cloud-init
 dosfstools
 edk2-shell
+less
 linux
 memtest86+
 mkinitcpio
