@@ -1,4 +1,5 @@
 base
+bottom
 dhcpcd
 docker
 efibootmgr
