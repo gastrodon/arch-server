@@ -6,7 +6,7 @@ else
   git clone https://github.com/gastrodon/arch-server /opt/arch-server
 fi
 
-mkdir -p /etc/nginx/sites-enabled /arch-server/build
+mkdir -p /arch-server/build
 cat <<EOF > /arch-server/index.html
 <html>
 <h3>arch-server: index</h3>
@@ -19,16 +19,21 @@ cat <<EOF > /arch-server/404.html
 </html>
 EOF
 
-cat <<EOF > /etc/nginx/sites-enabled/default
+cat <<EOF > /etc/nginx/nginx.conf
+http {
+  default_type  application/octet-stream;
+}
+
 server {
   listen        80;
-  root          /arch-server;
-  index         index.html;
+  server_name   localhost;
   error_log     /home/www-data/logs/nginx_swww.error.log;
   error_page    404    /404.html;
 
-  location /build {
-    try_files         $uri =404;
+  location / {
+    root          /arch-server/build;
+    index         index.html;
+    try_files     $uri =404;
   }
 }
 EOF
