@@ -9,7 +9,7 @@ linux
 memtest86+
 mkinitcpio
 mkinitcpio-archiso
+pv
 reflector
 rsync
 syslinux
-zsh
