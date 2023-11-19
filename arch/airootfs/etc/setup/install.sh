@@ -38,4 +38,4 @@ cp ./chroot_setup.sh /mnt/chroot_setup.sh
 chmod +x /mnt/chroot_setup.sh
 arch-chroot /mnt /chroot_setup.sh
 
-[ -n "$(cat /etc/options/REBOOT)" ] && reboot
+[ "$(cat /etc/options/REBOOT)" = "true" ] && reboot
