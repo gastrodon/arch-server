@@ -32,7 +32,7 @@ http {
     location / {
       root          /arch-server/build;
       index         index.html;
-      try_files     $uri;
+      try_files     \$uri =404;
     }
   }
 }
