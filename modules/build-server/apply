@@ -22,18 +22,18 @@ EOF
 cat <<EOF > /etc/nginx/nginx.conf
 http {
   default_type  application/octet-stream;
-}
 
-server {
-  listen        80;
-  server_name   localhost;
-  error_log     /home/www-data/logs/nginx_swww.error.log;
-  error_page    404    /404.html;
+  server {
+    listen        80;
+    server_name   localhost;
+    error_log     /home/www-data/logs/nginx_swww.error.log;
+    error_page    404    /404.html;
 
-  location / {
-    root          /arch-server/build;
-    index         index.html;
-    try_files     $uri =404;
+    location / {
+      root          /arch-server/build;
+      index         index.html;
+      try_files     $uri =404;
+    }
   }
 }
 EOF
