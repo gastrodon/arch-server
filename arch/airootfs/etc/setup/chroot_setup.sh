@@ -14,13 +14,13 @@ systemctl enable \
 # if it matches any `enp0s[0-9]*` `eth[0-9]*` `eno[0-9]*`
 # If any, enable it
 DEVICE="$(ip link | grep -E 'enp[0-9]*s[0-9]*' | cut -d: -f2 | tr -d '[:space:]')"
-[ -n "$DEVICE" ] && systemctl enabel "dhcpcd@$DEVICE"
+[ -n "$DEVICE" ] && systemctl enable "dhcpcd@$DEVICE"
 
 DEVICE="$(ip link | grep -E 'eth[0-9]*' | cut -d: -f2 | tr -d '[:space:]')"
-[ -n "$DEVICE" ] && systemctl enabel "dhcpcd@$DEVICE"
+[ -n "$DEVICE" ] && systemctl enable "dhcpcd@$DEVICE"
 
 DEVICE="$(ip link | grep -E 'eno[0-9]*' | cut -d: -f2 | tr -d '[:space:]')"
-[ -n "$DEVICE" ] && systemctl enabel "dhcpcd@$DEVICE"
+[ -n "$DEVICE" ] && systemctl enable "dhcpcd@$DEVICE"
 
 # set time info
 rm -f /etc/localtime
