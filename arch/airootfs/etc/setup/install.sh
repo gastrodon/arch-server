@@ -1,4 +1,5 @@
 #! /bin/bash
+set +x
 
 # set clock to use network time
 timedatectl set-ntp true
