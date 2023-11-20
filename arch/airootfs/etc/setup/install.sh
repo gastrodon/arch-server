@@ -36,7 +36,7 @@ cp -r /etc/options /mnt/etc
 cp /etc/options/override/* /mnt/etc/options
 
 # working in the installed system
-cp ./chroot_setup.sh /mnt/chroot_setup.sh
+cp /etc/setup/chroot_setup.sh /mnt/chroot_setup.sh
 chmod +x /mnt/chroot_setup.sh
 arch-chroot /mnt /chroot_setup.sh
 
