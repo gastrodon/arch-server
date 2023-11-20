@@ -15,3 +15,5 @@ ansible/playbooks/roles/minecraft/files/*/*
 
 ansible/playbooks/roles/starbound/files/*/*
 !ansible/playbooks/roles/starbound/files/*/.gitignore
+
+arch/airootfs/etc/pacman.d/mirrorlist
