@@ -6,16 +6,8 @@ function clean {
   mkdir -p /arch-server/w /arch-server/build
 }
 
-function mirrors {
-  curl -s "https://archlinux.org/mirrorlist/?country=US&protocol=https&use_mirror_status=on" \
-    | sed -e 's/^#Server/Server/' -e '/^#/d' \
-    | rankmirrors -n 5 - \
-    > ./arch/airootfs/etc/pacman.d/mirrorlist
-}
-
 function build {
   clean
-  mirrors
   mkarchiso -v -w /arch-server/w -o /arch-server ./arch
 }
 
