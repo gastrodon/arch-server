@@ -20,7 +20,7 @@ function build {
 }
 
 function release {
-  if [ -z "$(git status --porcelain)" ]; then 
+  if [ "$(git status --porcelain)" ]; then 
     echo "release needs a clean git"
     exit 1
   fi
