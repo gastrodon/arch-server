@@ -35,7 +35,6 @@ http {
       autoindex     on;
       root          /arch-server/build;
       index         index.html;
-      try_files     \$uri =404;
     }
   }
 }
