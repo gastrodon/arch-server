@@ -3,7 +3,6 @@ bottom
 dhcpcd
 docker
 efibootmgr
-git
 grub
 inetutils
 linux
@@ -14,5 +13,4 @@ openssh
 python
 python-setuptools
 sudo
-which
 zsh

@@ -5,6 +5,7 @@ base
 cloud-init
 dosfstools
 edk2-shell
+git
 less
 linux
 memtest86+
@@ -14,4 +15,5 @@ pv
 reflector
 rsync
 syslinux
+which
 zsh
