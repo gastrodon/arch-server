@@ -21,10 +21,6 @@ function build {
 
 function release {
   build
-  if [ "$(git status --porcelain)" ]; then 
-    echo "release needs a clean git"
-    exit 1
-  fi
 
   version="$(git describe --tags)"
   cp "/arch-server/arch-server-latest-x86_64.iso" "/arch-server/build/arch-server-${version}-x86_64.iso"
