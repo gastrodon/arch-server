@@ -36,3 +36,4 @@ case $1 in
   build) build;;
   release) release;;
   *) build
+esac
