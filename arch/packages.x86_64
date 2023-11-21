@@ -11,6 +11,7 @@ linux
 memtest86+
 mkinitcpio
 mkinitcpio-archiso
+pacman-contrib
 pv
 reflector
 rsync
