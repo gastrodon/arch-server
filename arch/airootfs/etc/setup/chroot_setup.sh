@@ -1,5 +1,5 @@
 #! /bin/bash
-set +x
+set -x
 
 # create a home for default user
 mkdir -p /home/zero
