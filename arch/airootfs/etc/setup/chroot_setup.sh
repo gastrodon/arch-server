@@ -39,13 +39,15 @@ echo "LANG=$(cat /etc/options/LANG)" > /etc/locale.conf
 echo "KEYMAP=$(cat /etc/options/KEYMAP)" > /etc/vconsole.conf
 
 # set hostname
-cat /etc/options/HOSTNAME > /etc/hostname
+hostname $(cat /etc/options/HOSTNAME)
 
 # generage hosts
 rm -rf /etc/hosts
-echo "127.0.0.1 localhost" >> /etc/hosts
-echo "::1 localhost" >> /etc/hosts
-echo "127.0.0.1 $(cat /etc/options/HOSTNAME)" >> /etc/hosts
+cat <<EOF >> /etc/hosts
+127.0.0.1 localhost
+::1       localhost
+127.0.0.1 $(hostname)
+EOF
 cat /etc/options/HOSTS >> /etc/hosts
 
 # set ~/.ssh permission
