@@ -6,13 +6,7 @@ mkdir -p /home/zero
 chown zero /home/zero -R
 
 # link systemd services
-systemctl enable \
-    cloud-init \
-    dhcpcd \
-    docker \
-    sshd \
-    systemd-networkd \
-    systemd-resolved
+systemctl enable cloud-init dhcpcd docker sshd systemd-networkd systemd-resolved
 
 # figure out the default network device
 # if it matches any `enp0s[0-9]*` `eth[0-9]*` `eno[0-9]*`
