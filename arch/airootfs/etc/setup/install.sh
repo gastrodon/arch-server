@@ -18,14 +18,6 @@ mount /dev/sda2 /mnt
 
 # cp -r /boot /mnt/boot
 
-# pacman mirrors
-curl -s "https://archlinux.org/mirrorlist/?country=US&protocol=https&use_mirror_status=on" \
-    | sed -e 's/^#Server/Server/' -e '/^#/d' \
-    | rankmirrors -n 5 - \
-    > /etc/pacman.d/mirrorlist
-
-cp /etc/pacman.d/mirrorlist /mnt/etc/pacman.d/mirrorlist
-
 # bootstrap arch install
 # pacman-key --init
 # pacman-key --populate archlinux
