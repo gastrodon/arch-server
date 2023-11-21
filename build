@@ -1,14 +1,13 @@
 #!/bin/bash
 
 function clean {
-  rm -rf /arch-server/w /arch-server/arch-server-latest-x86_64.iso
+  rm -rf /tmp/w /arch-server/arch-server-latest-x86_64.iso
   echo '' > ./arch/airootfs/etc/pacman.d/mirrorlist
-  mkdir -p /arch-server/w /arch-server/build
+  mkdir -p /tmp/w /arch-server/build
 }
 
 function build {
-  clean
-  mkarchiso -v -w /arch-server/w -o /arch-server ./arch
+  mkarchiso -v -w /tmp/w -o /arch-server ./arch
 }
 
 function release {
