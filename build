@@ -17,6 +17,8 @@ function release {
   version="$(git describe --tags)"
   cp "/arch-server/arch-server-latest-x86_64.iso" "/arch-server/build/arch-server-${version}-x86_64.iso"
   ln -sf "/arch-server/build/arch-server-${version}-x86_64.iso" "/arch-server/build/arch-server-latest-x86_64.iso"
+
+  echo "iso written to arch-server-${version}-x86_64.iso"
 }
 
 case $1 in
