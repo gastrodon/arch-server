@@ -7,7 +7,10 @@ chown zero /home/zero -R
 
 # link systemd services
 systemctl enable \
-    docker sshd dhcpcd \
+    cloud-init \
+    dhcpcd \
+    docker \
+    sshd \
     systemd-networkd \
     systemd-resolved
 
