@@ -22,14 +22,14 @@ mount /dev/sda2 /mnt
 curl -s "https://archlinux.org/mirrorlist/?country=US&protocol=https&use_mirror_status=on" \
     | sed -e 's/^#Server/Server/' -e '/^#/d' \
     | rankmirrors -n 5 - \
-    > ./arch/airootfs/etc/pacman.d/mirrorlist
+    > /etc/pacman.d/mirrorlist
 
 # bootstrap arch install
 pacman-key --init
 pacman-key --populate archlinux
 reflector --latest 15 --sort rate --save /etc/pacman.d/mirrorlist
 pacman -Sy
-pacstrap /mnt $(cat ./packages)
+pacstrap /mnt $(cat /etc/setup/packages)
 genfstab -U /mnt > /mnt/etc/fstab
 
 # copy user info
