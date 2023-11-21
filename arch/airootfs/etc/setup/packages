@@ -4,6 +4,7 @@ cloud-init
 dhcpcd
 docker
 efibootmgr
+git
 grub
 inetutils
 linux
