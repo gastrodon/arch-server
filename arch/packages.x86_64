@@ -6,6 +6,7 @@ cloud-init
 dosfstools
 edk2-shell
 git
+grub
 less
 linux
 memtest86+
