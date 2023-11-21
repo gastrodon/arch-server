@@ -2,12 +2,9 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 arch-install-scripts
 base
-cloud-init
 dosfstools
 edk2-shell
-git
 grub
-less
 linux
 memtest86+
 mkinitcpio
@@ -15,7 +12,5 @@ mkinitcpio-archiso
 pacman-contrib
 pv
 reflector
-rsync
 syslinux
-which
 zsh
