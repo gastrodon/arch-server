@@ -15,4 +15,5 @@ openssh
 python
 python-setuptools
 sudo
+which
 zsh
