@@ -19,7 +19,7 @@ mount /dev/sda2 /mnt
 bootstrap arch install
 pacman-key --init
 pacman-key --populate archlinux
-reflector --latest 15 --sort rate --save /etc/pacman.d/mirrorlist
+reflector --latest 15 --sort rate --protocol https --save /etc/pacman.d/mirrorlist
 pacman -Sy
 pacstrap /mnt $(cat /etc/setup/packages)
 genfstab -U /mnt > /mnt/etc/fstab
