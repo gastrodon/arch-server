@@ -38,4 +38,5 @@ cp /etc/setup/chroot_setup.sh /mnt/chroot_setup.sh
 chmod +x /mnt/chroot_setup.sh
 arch-chroot /mnt /chroot_setup.sh
 
+[ "$(cat /etc/options/SHUTDOWN)" = "true" ] && shutdown now
 [ "$(cat /etc/options/REBOOT)" = "true" ] && reboot
