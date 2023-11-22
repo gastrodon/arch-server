@@ -3,11 +3,12 @@
 function clean {
   rm -rf /tmp/w /arch-server/arch-server-latest-x86_64.iso
   echo '' > ./arch/airootfs/etc/pacman.d/mirrorlist
-  mkdir -p /tmp/w /arch-server/build
 }
 
 function build {
-  mkarchiso -v -w /tmp/w -o /arch-server ./arch
+  mkdir -p /tmp/w /arch-server/build /var/log/arch-server
+  echo "arch-server build ${version}-x86_64" | tee /var/log/arch-server/output.log > /var/log/arch-server/error.log
+  mkarchiso -v -w /tmp/w -o /arch-server ./arch >> /var/log/arch-server/output.log 2> /var/log/arch-server/error.log
 }
 
 function release {
