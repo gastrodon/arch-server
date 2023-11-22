@@ -1,6 +1,6 @@
 #cloud-config
 hostname: arch-builder
-user: arch
+user: zero
 locale: en_US.UTF-8
 timezone: America/New-York
 
