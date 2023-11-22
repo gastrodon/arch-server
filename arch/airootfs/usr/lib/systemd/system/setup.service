@@ -1,5 +1,5 @@
 [Unit]
-Description=Run scripts in the home of zero to set up arch
+Description=Install arch-server
 
 [Service]
 WorkingDirectory=/etc/setup

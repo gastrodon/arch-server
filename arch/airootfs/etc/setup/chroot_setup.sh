@@ -1,10 +1,6 @@
 #! /bin/bash
 set -x
 
-# create a home for default user
-mkdir -p /home/zero
-chown zero /home/zero -R
-
 # link systemd services
 systemctl enable cloud-init dhcpcd docker sshd systemd-networkd systemd-resolved
 

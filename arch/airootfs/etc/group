@@ -3,4 +3,3 @@ adm:x:4:zero
 wheel:x:10:zero
 uucp:x:14:zero
 docker:x:970:zero
-zero:x:1000:

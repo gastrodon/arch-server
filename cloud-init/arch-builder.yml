@@ -1,6 +1,6 @@
 #cloud-config
 hostname: arch-builder
-user: zero
+user: arch
 locale: en_US.UTF-8
 timezone: America/New-York
 ssh_authorized_keys:
