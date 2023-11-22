@@ -35,13 +35,6 @@ cat <<EOF >> /etc/hosts
 EOF
 cat /etc/options/HOSTS >> /etc/hosts
 
-# set ~/.ssh permission
-mkdir -p /home/zero/.ssh
-touch /home/zero/.ssh/authorized_keys
-chown zero /home/zero/.ssh/authorized_keys
-chmod -rwx /home/zero/.ssh/authorized_keys
-chmod u+rwx /home/zero/.ssh/authorized_keys
-
 # install GRUB
 mkdir -p /boot/efi
 mount /dev/sda1 /boot/efi
