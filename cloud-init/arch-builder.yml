@@ -14,3 +14,13 @@ runcmd:
 
 package_upgrade: true
 package_reboot_if_required: true
+packages:
+  - archiso
+  - bottom
+  - git
+  - inetutils
+  - lvm2
+  - neofetch
+  - python
+  - python-setuptools
+  - which
