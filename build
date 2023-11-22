@@ -2,6 +2,7 @@
 archroot="${ARCH_SERVER_ROOT:-/opt/arch-server}"
 
 function build {
+  rm -rf /tmp/w
   mkdir -p /tmp/w "${archroot}/artifact" /var/log/arch-server
   echo "arch-server build ${version}-x86_64" | tee /var/log/arch-server/output.log > /var/log/arch-server/error.log
   mkarchiso -v -w /tmp/w -o . ./arch  2> /var/log/arch-server/error.log | tee /var/log/arch-server/output.log
