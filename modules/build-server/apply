@@ -6,7 +6,7 @@ else
   git clone https://github.com/gastrodon/arch-server /opt/arch-server
 fi
 
-mkdir -p /opt/arch-server/build
+mkdir -p /opt/arch-server/artifact
 cat <<EOF > /opt/arch-server/index.html
 <html>
 <h3>arch-server: index</h3>
@@ -33,7 +33,7 @@ http {
 
     location / {
       autoindex     on;
-      root          /opt/arch-server/build;
+      root          /opt/arch-server/artifact;
       index         index.html;
     }
   }
