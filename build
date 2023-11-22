@@ -2,7 +2,6 @@
 
 function clean {
   rm -rf /tmp/w /arch-server/arch-server-latest-x86_64.iso
-  echo '' > ./arch/airootfs/etc/pacman.d/mirrorlist
 }
 
 function build {
