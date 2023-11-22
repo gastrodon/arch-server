@@ -5,6 +5,7 @@ locale: en_US.UTF-8
 timezone: America/New-York
 ssh_authorized_keys:
   - ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJHwLX/q2/QUPYlA28XYy6Y4XnsM5Wu2nGqB6XiyVBha mail@gastrodon.io
+  - cursed test a thing
 
 users:
   - default
