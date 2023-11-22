@@ -2,7 +2,7 @@
 archroot="${ARCH_SERVER_ROOT:-/opt/arch-server}"
 
 function build {
-  mkdir -p /tmp/w "${archroot}/build" /var/log/arch-server
+  mkdir -p /tmp/w "${archroot}/artifact" /var/log/arch-server
   echo "arch-server build ${version}-x86_64" | tee /var/log/arch-server/output.log > /var/log/arch-server/error.log
   mkarchiso -v -w /tmp/w -o /arch-server ./arch >> /var/log/arch-server/output.log 2> /var/log/arch-server/error.log
 }
@@ -11,8 +11,8 @@ function release {
   build
 
   version="$(git describe --tags)"
-  cp "${archroot}/arch-server-latest-x86_64.iso" "${archroot}/build/arch-server-${version}-x86_64.iso"
-  ln -sf "${archroot}/build/arch-server-${version}-x86_64.iso" "${archroot}/build/arch-server-latest-x86_64.iso"
+  cp "${archroot}/arch-server-latest-x86_64.iso" "${archroot}/artifact/arch-server-${version}-x86_64.iso"
+  ln -sf "${archroot}/artifact/arch-server-${version}-x86_64.iso" "${archroot}/artifact/arch-server-latest-x86_64.iso"
 
   echo "iso written to ${archroot}/arch-server-${version}-x86_64.iso"
 }
