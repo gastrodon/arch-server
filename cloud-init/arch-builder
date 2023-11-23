@@ -1,6 +1,5 @@
 #cloud-config
 hostname: arch-builder
-user: zero
 locale: en_US.UTF-8
 timezone: America/New-York
 
@@ -12,19 +11,3 @@ users:
       gh:gastrodon
     ssh_authorized_keys:
       - ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJHwLX/q2/QUPYlA28XYy6Y4XnsM5Wu2nGqB6XiyVBha mail@gastrodon.io
-  
-runcmd:
-  - curl https://aviary.sh/install | bash
-
-package_upgrade: true
-package_reboot_if_required: true
-packages:
-  - archiso
-  - bottom
-  - git
-  - inetutils
-  - lvm2
-  - neofetch
-  - python
-  - python-setuptools
-  - which
