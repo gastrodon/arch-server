@@ -46,4 +46,5 @@ grub-install \
 
 grub-mkconfig -o /boot/grub/grub.cfg
 
+systemctl enable dhcpcd docker sshd systemd-networkd systemd-resolved
 curl -L https://aviary.sh/install | bash

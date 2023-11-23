@@ -38,16 +38,6 @@ cp /etc/setup/chroot_setup.sh /mnt/chroot_setup.sh
 chmod +x /mnt/chroot_setup.sh
 arch-chroot /mnt /chroot_setup.sh
 
-# enable systemd services
-mkdir -p /mnt/etc/systemd/system-preset
-cat <<EOF > /mnt/etc/systemd/system-preset/90-arch-server.preset
-enable dhcpcd
-enable docker
-enable sshd
-enable systemd-networkd
-enable systemd-resolved
-EOF
-
 cat <<EOF > /mnt/etc/resolv.conf
 8.8.8.8
 8.8.4.4
