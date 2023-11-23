@@ -48,4 +48,10 @@ enable systemd-networkd
 enable systemd-resolved
 EOF
 
+cat <<EOF > /mnt/etc/resolv.conf
+8.8.8.8
+8.8.4.4
+1.1.1.1
+EOF
+
 if [ "$(cat /etc/options/SHUTDOWN)" = "true" ]; then shutdown now; fi
