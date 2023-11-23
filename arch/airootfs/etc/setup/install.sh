@@ -24,10 +24,6 @@ pacman -Sy
 pacstrap /mnt $(cat /etc/setup/packages)
 genfstab -U /mnt > /mnt/etc/fstab
 
-# copy user info
-cp /etc/{group,gshadow,passwd,shadow,sudoers} /mnt/etc
-mkdir -p /mnt/home/zero
-cp -r /home/zero/. /mnt/home
 
 # copy options with overrides, if any
 cp -r /etc/options /mnt/etc
@@ -37,6 +33,11 @@ cp /etc/options/override/* /mnt/etc/options
 cp /etc/setup/chroot_setup.sh /mnt/chroot_setup.sh
 chmod +x /mnt/chroot_setup.sh
 arch-chroot /mnt /chroot_setup.sh
+
+# copy user info
+cp /etc/{group,gshadow,passwd,shadow,sudoers} /mnt/etc
+mkdir -p /mnt/home/zero
+cp -r /home/zero/. /mnt/home
 
 [ "$(cat /etc/options/SHUTDOWN)" = "true" ] && shutdown now
 [ "$(cat /etc/options/REBOOT)" = "true" ] && reboot
