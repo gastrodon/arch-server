@@ -23,6 +23,9 @@ echo "KEYMAP=$(cat /etc/options/KEYMAP)" > /etc/vconsole.conf
 # set hostname
 hostname $(cat /etc/options/HOSTNAME)
 
+DEVICE="$(ip link | grep -Po 'ens[\d]+')"
+[ -n "$DEVICE" ] && systemctl enabel "dhcpcd@$DEVICE"
+
 # generage hosts
 rm -rf /etc/hosts
 cat <<EOF >> /etc/hosts
