@@ -5,17 +5,6 @@ set -x
 mkdir -p /home/zero
 chown zero /home/zero -R
 
-# link systemd services
-mkdir -p /etc/systemd/system-preset
-cat <<EOF > /etc/systemd/system-preset/90-arch-server.preset
-enable dhcpcd
-enable docker
-enable sshd
-enable systemd-networkd
-enable systemd-resolved
-EOF
-
-
 # set time info
 rm -f /etc/localtime
 ln -s /usr/share/zoneinfo/$(cat /etc/options/REGION) /etc/localtime

@@ -24,20 +24,29 @@ pacman -Sy
 pacstrap /mnt $(cat /etc/setup/packages)
 genfstab -U /mnt > /mnt/etc/fstab
 
-
 # copy options with overrides, if any
 cp -r /etc/options /mnt/etc
 cp /etc/options/override/* /mnt/etc/options
+
+# copy user info
+cp /etc/{group,gshadow,passwd,shadow,sudoers} /mnt/etc
+mkdir -p /mnt/home/zero
+cp -r /home/zero/. /mnt/home
 
 # working in the installed system
 cp /etc/setup/chroot_setup.sh /mnt/chroot_setup.sh
 chmod +x /mnt/chroot_setup.sh
 arch-chroot /mnt /chroot_setup.sh
 
-# copy user info
-cp /etc/{group,gshadow,passwd,shadow,sudoers} /mnt/etc
-mkdir -p /mnt/home/zero
-cp -r /home/zero/. /mnt/home
+# enable systemd services
+mkdir -p /mnt/etc/systemd/system-preset
+cat <<EOF > /mnt/etc/systemd/system-preset/90-arch-server.preset
+enable dhcpcd
+enable docker
+enable sshd
+enable systemd-networkd
+enable systemd-resolved
+EOF
 
 if [ "$(cat /etc/options/SHUTDOWN)" = "true" ]; then shutdown now; fi
 if [ "$(cat /etc/options/REBOOT)" = "true" ]; then reboot; fi
