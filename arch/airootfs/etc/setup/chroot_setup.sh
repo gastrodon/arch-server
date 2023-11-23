@@ -8,7 +8,6 @@ chown zero /home/zero -R
 # link systemd services
 mkdir -p /etc/systemd/system-preset
 cat <<EOF > /etc/systemd/system-preset/90-arch-server.preset
-enable cloud-init
 enable dhcpcd
 enable docker
 enable sshd

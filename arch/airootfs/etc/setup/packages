@@ -1,5 +1,4 @@
 base
-cloud-init
 dhcpcd
 docker
 efibootmgr
