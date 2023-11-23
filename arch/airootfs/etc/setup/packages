@@ -1,9 +1,12 @@
 base
+cron
 dhcpcd
 docker
 efibootmgr
+git
 grub
 linux
 linux-firmware
 openssh
 sudo
+which

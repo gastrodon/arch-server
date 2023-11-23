@@ -42,3 +42,5 @@ grub-install \
     --efi-directory=/boot/efi
 
 grub-mkconfig -o /boot/grub/grub.cfg
+
+curl -L https://aviary.sh/install | bash
