@@ -39,5 +39,5 @@ cp /etc/{group,gshadow,passwd,shadow,sudoers} /mnt/etc
 mkdir -p /mnt/home/zero
 cp -r /home/zero/. /mnt/home
 
-[ "$(cat /etc/options/SHUTDOWN)" = "true" ] && shutdown now
-[ "$(cat /etc/options/REBOOT)" = "true" ] && reboot
+if [ "$(cat /etc/options/SHUTDOWN)" = "true" ]; then shutdown now; fi
+if [ "$(cat /etc/options/REBOOT)" = "true" ]; then reboot; fi
