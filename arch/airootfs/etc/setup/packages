@@ -5,6 +5,7 @@ docker
 efibootmgr
 git
 grub
+inetutils
 linux
 linux-firmware
 openssh
