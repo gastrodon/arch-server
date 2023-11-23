@@ -6,7 +6,16 @@ mkdir -p /home/zero
 chown zero /home/zero -R
 
 # link systemd services
-systemctl enable cloud-init dhcpcd docker sshd systemd-networkd systemd-resolved
+mkdir -p /etc/systemd/system-preset
+cat <<EOF > /etc/systemd/system-preset/90-arch-server.preset
+enable cloud-init
+enable dhcpcd
+enable docker
+enable sshd
+enable systemd-networkd
+enable systemd-resolved
+EOF
+
 
 # set time info
 rm -f /etc/localtime
