@@ -49,4 +49,3 @@ enable systemd-resolved
 EOF
 
 if [ "$(cat /etc/options/SHUTDOWN)" = "true" ]; then shutdown now; fi
-if [ "$(cat /etc/options/REBOOT)" = "true" ]; then reboot; fi
