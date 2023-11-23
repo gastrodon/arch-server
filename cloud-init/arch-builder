@@ -1,14 +1,30 @@
-#!/bin/bash
-pacman -Sy --noconfirm archiso \
-  bottom \
-  git \
-  inetutils \
-  lvm2 \
-  neofetch \
-  python \
-  python-setuptools \
-  which
+#cloud-config
+hostname: arch-builder
+user: zero
+locale: en_US.UTF-8
+timezone: America/New-York
 
-hostname arch-builder
-systemctl daemon-reload
-curl https://aviary.sh/install | bash
+users:
+  - name: arch
+    sudo: ALL=(ALL) NOPASSWD:ALL
+    groups: users, admin
+    ssh_import_id:
+      gh:gastrodon
+    ssh_authorized_keys:
+      - ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJHwLX/q2/QUPYlA28XYy6Y4XnsM5Wu2nGqB6XiyVBha mail@gastrodon.io
+  
+runcmd:
+  - curl https://aviary.sh/install | bash
+
+package_upgrade: true
+package_reboot_if_required: true
+packages:
+  - archiso
+  - bottom
+  - git
+  - inetutils
+  - lvm2
+  - neofetch
+  - python
+  - python-setuptools
+  - which
