@@ -8,5 +8,5 @@ else
 fi
 
 make -C /opt/kobold-cpp LLAMA_OPENBLAS=1 LLAMA_CLBLAST=1
-curl -o /opt/kobold-cpp/models \
+curl -o /opt/kobold-cpp/models/pygmalion-6b-v3.guff \
   https://huggingface.co/concedo/pygmalion-6bv3-ggml-ggjt/resolve/main/pygmalion-6b-v3-ggml-ggjt-f16.bin
