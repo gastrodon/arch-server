@@ -1,0 +1,12 @@
+#!/usr/bin/bash
+pacman -Sy --noconfirm make python python-pip openblas cblas clblas gcc
+
+if [ -d /opt/kobold-cpp ]; then
+  git -C /opt/kobold-cpp pull
+else
+  git clone https://github.com/LostRuins/koboldcpp /opt/kobold-cpp
+fi
+
+make -C /opt/kobold-cpp LLAMA_OPENBLAS=1 LLAMA_CLBLAST=1
+curl -o /opt/kobold-cpp/models \
+  https://huggingface.co/concedo/pygmalion-6bv3-ggml-ggjt/resolve/main/pygmalion-6b-v3-ggml-ggjt-f16.bin
