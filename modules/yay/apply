@@ -1,0 +1,10 @@
+pacman -S --noconfirm git go
+
+if [ -d /opt/yay ]; then
+  git -C /opt/yay pull
+else
+  git clone https://github.com/Jguer/yay /opt/yay
+  chown -R zero /opt/yay
+fi
+
+go build -C /opt/yay -buildvcs=false -o /usr/bin/yay
