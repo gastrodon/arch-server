@@ -19,4 +19,4 @@ ansible/playbooks/roles/starbound/files/*/*
 
 arch/airootfs/etc/pacman.d/mirrorlist
 
-modules/hosts/arch-server
+hosts/arch-server
