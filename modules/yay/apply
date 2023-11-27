@@ -1,4 +1,4 @@
-pacman -S --noconfirm git go base-devel
+pacman -Sy --noconfirm git go base-devel
 
 if [ -d /opt/yay ]; then
   git -C /opt/yay pull
