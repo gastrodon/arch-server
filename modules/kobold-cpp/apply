@@ -1,5 +1,5 @@
 #!/usr/bin/bash
-pacman -Sy --noconfirm make python python-pip openblas cblas clblas gcc
+pacman -Sy --noconfirm make python python-pip openblas cblas clblast gcc
 
 if [ -d /opt/kobold-cpp ]; then
   git -C /opt/kobold-cpp pull
