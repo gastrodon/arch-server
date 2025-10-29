@@ -1,0 +1,23 @@
+# Nix build results
+result
+result-*
+
+# Flake lock file (some prefer to commit this, others don't)
+# Uncomment if you don't want to track the lock file
+# flake.lock
+
+# Nix development shells
+.direnv/
+.envrc
+
+# Editor files
+*.swp
+*.swo
+*~
+.*.sw?
+.vscode/
+.idea/
+
+# OS files
+.DS_Store
+Thumbs.db

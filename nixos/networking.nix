@@ -17,7 +17,9 @@
 
     # Match ethernet devices and configure DHCP
     networks."20-ethernet" = {
-      matchConfig.Name = "en* eth*";
+      matchConfig = {
+        Name = "en* eth*";
+      };
       networkConfig = {
         DHCP = "yes";
         IPv6PrivacyExtensions = "yes";

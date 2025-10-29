@@ -40,28 +40,25 @@
 
   # System packages from packages.x86_64 and setup/packages
   environment.systemPackages = with pkgs; [
-    # From packages.x86_64
-    arch-install-scripts
+    # From packages.x86_64 (adapted for NixOS)
     dosfstools
     edk2-shell
-    grub2
-    grub2_efi
-    linux
+    # grub is configured via boot.loader, not as a package
     memtest86plus
     pv
-    reflector
+    # reflector is Arch-specific, mirrors are handled differently in NixOS
     syslinux
 
     # From setup/packages
-    cron
+    # cron is configured via services.cron
     dhcpcd
-    docker
+    # docker is configured via virtualisation.docker
     efibootmgr
     git
     inetutils
-    linux-firmware
-    openssh
-    sudo
+    # linux-firmware is included by default in NixOS
+    # openssh is configured via services.openssh
+    # sudo is included by default
     which
 
     # Additional useful tools
